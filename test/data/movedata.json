@@ -1,0 +1,114 @@
+{
+    "game": {
+        "id": "702a9816-31b6-48ce-a153-a41a9244b952",
+        "ruleset": {
+            "name": "solo",
+            "version": "v1.0.25",
+            "settings": {
+                "foodSpawnChance": 0,
+                "minimumFood": 0,
+                "hazardDamagePerTurn": 0,
+                "royale": {
+                    "shrinkEveryNTurns": 0
+                },
+                "squad": {
+                    "allowBodyCollisions": false,
+                    "sharedElimination": false,
+                    "sharedHealth": false,
+                    "sharedLength": false
+                }
+            }
+        },
+        "timeout": 500,
+        "source": "challenge"
+    },
+    "turn": 0,
+    "board": {
+        "height": 11,
+        "width": 11,
+        "snakes": [
+            {
+                "id": "gs_VvSfDD8r4kdw4BHKgvk6Pyb7",
+                "name": "Primus Serpentes",
+                "latency": "",
+                "health": 100,
+                "body": [
+                    {
+                        "x": 5,
+                        "y": 5
+                    },
+                    {
+                        "x": 5,
+                        "y": 5
+                    },
+                    {
+                        "x": 5,
+                        "y": 5
+                    },
+                    {
+                        "x": 5,
+                        "y": 5
+                    },
+                    {
+                        "x": 5,
+                        "y": 5
+                    }
+                ],
+                "head": {
+                    "x": 5,
+                    "y": 5
+                },
+                "length": 5,
+                "shout": "",
+                "squad": "",
+                "customizations": {
+                    "color": "#26428b",
+                    "head": "default",
+                    "tail": "default"
+                }
+            }
+        ],
+        "food": [],
+        "hazards": []
+    },
+    "you": {
+        "id": "gs_VvSfDD8r4kdw4BHKgvk6Pyb7",
+        "name": "Primus Serpentes",
+        "latency": "",
+        "health": 100,
+        "body": [
+            {
+                "x": 5,
+                "y": 5
+            },
+            {
+                "x": 5,
+                "y": 5
+            },
+            {
+                "x": 5,
+                "y": 5
+            },
+            {
+                "x": 5,
+                "y": 5
+            },
+            {
+                "x": 5,
+                "y": 5
+            }
+        ],
+        "head": {
+            "x": 5,
+            "y": 5
+        },
+        "length": 5,
+        "shout": "",
+        "squad": "",
+        "customizations": {
+            "color": "#26428b",
+            "head": "default",
+            "tail": "default"
+        }
+    }
+}
