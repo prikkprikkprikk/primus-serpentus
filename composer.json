@@ -1,0 +1,25 @@
+{
+    "name": "prikkprikkprikk/primus-serpentus",
+    "description": "A battlesnake in PHP, hopefully using modern best practices.",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Prikkprikkprikk\\PrimusSerpentus\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jørn Støylen",
+            "email": "jorn@prikkprikkprikk.no"
+        }
+    ],
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "require-dev": {
+        "pestphp/pest": "^1.21"
+    }
+}
