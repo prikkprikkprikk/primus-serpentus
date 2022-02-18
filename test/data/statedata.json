@@ -1,6 +1,6 @@
 {
     "game": {
-        "id": "702a9816-31b6-48ce-a153-a41a9244b952",
+        "id": "085d345c-eba8-4b5d-b81b-a547dad3f58c",
         "ruleset": {
             "name": "solo",
             "version": "v1.0.25",
@@ -22,41 +22,41 @@
         "timeout": 500,
         "source": "challenge"
     },
-    "turn": 0,
+    "turn": 22,
     "board": {
         "height": 11,
         "width": 11,
         "snakes": [
             {
-                "id": "gs_VvSfDD8r4kdw4BHKgvk6Pyb7",
+                "id": "gs_KqTD4FRMYCJPK4dtdtTC3jj4",
                 "name": "Primus Serpentes",
-                "latency": "",
-                "health": 100,
+                "latency": "11",
+                "health": 78,
                 "body": [
                     {
-                        "x": 5,
-                        "y": 5
+                        "x": 10,
+                        "y": 8
                     },
                     {
-                        "x": 5,
-                        "y": 5
+                        "x": 10,
+                        "y": 9
                     },
                     {
-                        "x": 5,
-                        "y": 5
+                        "x": 10,
+                        "y": 10
                     },
                     {
-                        "x": 5,
-                        "y": 5
+                        "x": 9,
+                        "y": 10
                     },
                     {
-                        "x": 5,
-                        "y": 5
+                        "x": 8,
+                        "y": 10
                     }
                 ],
                 "head": {
-                    "x": 5,
-                    "y": 5
+                    "x": 10,
+                    "y": 8
                 },
                 "length": 5,
                 "shout": "",
@@ -72,35 +72,35 @@
         "hazards": []
     },
     "you": {
-        "id": "gs_VvSfDD8r4kdw4BHKgvk6Pyb7",
+        "id": "gs_KqTD4FRMYCJPK4dtdtTC3jj4",
         "name": "Primus Serpentes",
-        "latency": "",
-        "health": 100,
+        "latency": "11",
+        "health": 78,
         "body": [
             {
-                "x": 5,
-                "y": 5
+                "x": 10,
+                "y": 8
             },
             {
-                "x": 5,
-                "y": 5
+                "x": 10,
+                "y": 9
             },
             {
-                "x": 5,
-                "y": 5
+                "x": 10,
+                "y": 10
             },
             {
-                "x": 5,
-                "y": 5
+                "x": 9,
+                "y": 10
             },
             {
-                "x": 5,
-                "y": 5
+                "x": 8,
+                "y": 10
             }
         ],
         "head": {
-            "x": 5,
-            "y": 5
+            "x": 10,
+            "y": 8
         },
         "length": 5,
         "shout": "",
