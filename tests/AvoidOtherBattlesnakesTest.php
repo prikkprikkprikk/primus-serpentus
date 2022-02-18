@@ -35,10 +35,10 @@ it('has "you" snake of length 5', function ()
 
 it('has empty cells where expected', function ()
 {
-    expect(GameState::isEmpty(new Vector(0, 10)))->toBe(true);
-    expect(GameState::isEmpty(new Vector(4, 3)))->toBe(true);
-    expect(GameState::isEmpty(new Vector(8, 8)))->toBe(true);
-    expect(GameState::isEmpty(new Vector(10, 0)))->toBe(true);
+    expect(GameState::isSafe(new Vector(0, 10)))->toBe(true);
+    expect(GameState::isSafe(new Vector(4, 3)))->toBe(true);
+    expect(GameState::isSafe(new Vector(8, 8)))->toBe(true);
+    expect(GameState::isSafe(new Vector(10, 0)))->toBe(true);
 });
 
 
@@ -46,4 +46,18 @@ it('has four enemies', function ()
 {
     expect(GameState::enemies())->toBeArray();
     expect(count(GameState::enemies()))->toBe(4);
+});
+
+
+it('has no food', function ()
+{
+    expect(GameState::food())->toBeArray();
+    expect(count(GameState::food()))->toBe(0);
+});
+
+
+it('has no hazards', function ()
+{
+    expect(GameState::hazards())->toBeArray();
+    expect(count(GameState::hazards()))->toBe(0);
 });

@@ -54,7 +54,7 @@ class Snake
         // Up
         if ($this->head()->y < GameState::height() - 1)
         {
-            if (GameState::isEmpty($this->head()->above()))
+            if (GameState::isSafe($this->head()->up()))
             {
                 $moves[] = 'up';
             }
@@ -62,7 +62,7 @@ class Snake
         // Right
         if ($this->head()->x < GameState::width() - 1)
         {
-            if (GameState::isEmpty($this->head()->right()))
+            if (GameState::isSafe($this->head()->right()))
             {
                 $moves[] = 'right';
             }
@@ -70,7 +70,7 @@ class Snake
         // Down
         if ($this->head()->y > 0)
         {
-            if (GameState::isEmpty($this->head()->below()))
+            if (GameState::isSafe($this->head()->down()))
             {
                 $moves[] = 'down';
             }
@@ -78,15 +78,12 @@ class Snake
         // Left
         if ($this->head()->x > 0)
         {
-            if (GameState::isEmpty($this->head()->left()))
+            if (GameState::isSafe($this->head()->left()))
             {
                 $moves[] = 'left';
             }
         }
-        // error_log("Head is at:");
-        // error_log(print_r($this->head, true));
-        // error_log("Moves:");
-        // error_log(print_r($moves, true));
+
         return $moves;
     }
 
@@ -97,8 +94,34 @@ class Snake
     }
 
 
+    public function moveTowardClosestFood() : string
+    {
+        // Go through each possible move, and find the one(s) closest to food
+        $possibleMoves = $this->possibleMoves();
+        $shortestDistance = PHP_INT_MAX;
+        $closestMoves = [];
+
+        foreach ($possibleMoves as $move) {
+            $newPos = $this->head()->{$move}();
+            $closestFood = GameState::closestFood($newPos);
+            $distance = $newPos->distanceTo($closestFood);
+            $closestMoves[$move] = $distance;
+            if ($distance < $shortestDistance) {
+                $shortestDistance = $distance;
+            }
+        }
+        $moves = array_filter(
+            $closestMoves,
+            function ($distance) use ($shortestDistance) {
+                return $distance === $shortestDistance;
+            }
+        );
+        return array_rand($moves);
+    }
+
+
     public function getMove() : string
     {
-        return $this->randomMove();
+        return $this->moveTowardClosestFood();
     }
 }

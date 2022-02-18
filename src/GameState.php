@@ -9,6 +9,8 @@ class GameState
     private static object $state;
     private static array $board;
     private static array $snakes;
+    private static array $food;
+    private static array $hazards;
     private static string $youID;
 
     public static function load( string $state_json ) : void
@@ -23,6 +25,21 @@ class GameState
             },
             self::$state->board->snakes
         );
+        self::$food = array_map(
+            function ($food)
+            {
+                return new Vector($food->x, $food->y);
+            },
+            self::$state->board->food
+        );
+        self::$hazards = array_map(
+            function ($hazard)
+            {
+                return new Vector($hazard->x, $hazard->y);
+            },
+            self::$state->board->hazards
+        );
+
         self::$youID = self::$state->you->id;
         self::hydrateBoard();
     }
@@ -89,8 +106,44 @@ class GameState
     }
 
 
-    public static function isEmpty( Vector $pos ) : bool
+    public static function food() : array
     {
-        return self::$board[$pos->y][$pos->x] === 'empty';
+        return self::$food;
+    }
+
+
+    public static function hazards() : array
+    {
+        return self::$hazards;
+    }
+
+
+    public static function isSafe( Vector $pos ) : bool
+    {
+        return (
+            self::$board[$pos->y][$pos->x] === 'empty'
+            || self::$board[$pos->y][$pos->x] === 'food'
+        );
+    }
+
+
+    public static function closestFood( Vector|null $pos = null ) : Vector
+    {
+        if ($pos === null) {
+            $pos = self::you()->head();
+        }
+        $closestFood = array_reduce(
+            self::$food,
+            function (Vector $closest, Vector $food) use ($pos) {
+                $currentClosestDistance = $pos->distanceTo($closest);
+                $distance = $pos->distanceTo($food);
+                if ($distance < $currentClosestDistance) {
+                    $closest = $food;
+                }
+                return $closest;
+            },
+            self::$food[0]
+        );
+        return $closestFood;
     }
 }
