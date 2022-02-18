@@ -31,7 +31,11 @@ if ($requestUri == '/')
 elseif ($requestUri == '/start')
 {
     // read the incoming request body stream and decode the JSON
-    $data = json_decode(file_get_contents('php://input'));
+    $json_data = file_get_contents('php://input');
+    $data = json_decode($json_data);
+
+    error_log("Received start data:\n$json_data\n", 3, '/home/forge/bs.prikkprikkprikk.no/storage/log/log');
+
     $snek->receiveState($data);
 
     // TODO - if you have a stateful snake, you could do initialization work here
@@ -43,7 +47,7 @@ elseif ($requestUri == '/move')
     $json_data = file_get_contents('php://input');
     $data = json_decode($json_data);
 
-    error_log("Received move data: $json_data\n", 3, '/home/forge/bs.prikkprikkprikk.no/storage/log/log');
+    error_log("Received move data:\n$json_data\n", 3, '/home/forge/bs.prikkprikkprikk.no/storage/log/log');
 
     $snek->receiveState($data);
 
