@@ -112,6 +112,12 @@ class GameState
     }
 
 
+    public static function hasFood() : bool
+    {
+        return count(self::$food) > 0;
+    }
+
+
     public static function hazards() : array
     {
         return self::$hazards;

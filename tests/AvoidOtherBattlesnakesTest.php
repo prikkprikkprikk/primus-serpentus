@@ -52,6 +52,7 @@ it('has four enemies', function ()
 it('has no food', function ()
 {
     expect(GameState::food())->toBeArray();
+    expect(GameState::hasFood())->toBe(false);
     expect(count(GameState::food()))->toBe(0);
 });
 
