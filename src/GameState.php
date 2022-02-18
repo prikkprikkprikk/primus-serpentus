@@ -11,6 +11,8 @@ class GameState
 
     public static function load( string $state_json ) : void
     {
+        // error_log("Game state:");
+        // error_log($state_json . "\n", 3, "../storage/log/log");
         self::$state = json_decode($state_json);
         self::$you = new Snake(self::$state->you);
     }
