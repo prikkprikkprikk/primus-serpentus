@@ -11,14 +11,17 @@ class Snake
 {
 
     private $state;
-    private $head, $neck;
 
 
     public function __construct($data)
     {
         $this->state = $data;
-        $this->head = new Vector($this->state->head);
-        $this->neck = new Vector($this->state->body[1]);
+    }
+
+
+    public function id() : string
+    {
+        return $this->state->id;
     }
 
 
@@ -28,17 +31,20 @@ class Snake
     }
 
 
-    public function isBody(Vector $vector): bool
+    public function head() : Vector
     {
-        return array_reduce(
-            $this->state->body,
-            function($found, $square) use ($vector)
-            {
-                $found = $found || ($square->x === $vector->x && $square->y === $vector->y);
-                return $found;
-            },
-            false
-        );
+        return new Vector($this->state->head->x, $this->state->head->y);
+    }
+
+
+    public function occupies(Vector $vector): bool
+    {
+        foreach ($this->state->body as $body) {
+            if ($body->x === $vector->x && $body->y === $vector->y) {
+                return true;
+            }
+        }
+        return false;
     }
 
 
@@ -46,26 +52,34 @@ class Snake
     {
         $moves = [];
         // Up
-        if ($this->head->y < GameState::height() - 1) {
-            if (!$this->isBody($this->head->above())) {
+        if ($this->head()->y < GameState::height() - 1)
+        {
+            if (GameState::isEmpty($this->head()->above()))
+            {
                 $moves[] = 'up';
             }
         }
         // Right
-        if ($this->head->x < GameState::width() - 1) {
-            if (!$this->isBody($this->head->right())) {
+        if ($this->head()->x < GameState::width() - 1)
+        {
+            if (GameState::isEmpty($this->head()->right()))
+            {
                 $moves[] = 'right';
             }
         }
         // Down
-        if ($this->head->y > 0) {
-            if (!$this->isBody($this->head->below())) {
+        if ($this->head()->y > 0)
+        {
+            if (GameState::isEmpty($this->head()->below()))
+            {
                 $moves[] = 'down';
             }
         }
         // Left
-        if ($this->head->x > 0) {
-            if (!$this->isBody($this->head->left())) {
+        if ($this->head()->x > 0)
+        {
+            if (GameState::isEmpty($this->head()->left()))
+            {
                 $moves[] = 'left';
             }
         }
