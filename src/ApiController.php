@@ -7,19 +7,30 @@ namespace App;
  *
  * @see https://docs.battlesnake.com/references/api
  */
-class Api
+class ApiController
 {
 
-    /**
-     * @param string $apiversion Must be the apiversion use by the snake
-     * @param string $author     Must be empty or contain the username of the snake' author
-     * @param string $color      Must be a hexadecimal color string, preceded with a hash symbol, e.g. "#ff00ff"
-     * @param string $headType   Head type string, see API docs for accepted values
-     * @param string $tailType   Tail type string, see API docs for accepted values
-     */
-    public static function indexResponse(string $apiversion , string $author, string $color, string $headType , string $tailType) : void
+    public static function handle($requestUri)
     {
-        self::outputJsonResponse(['apiversion' => $apiversion, 'author' => $author, 'color' => $color, 'head' => $headType, 'tail' => $tailType]);
+        match($requestUri)
+        {
+            '/' => self::indexResponse(),
+            '/start' => self::startResponse(),
+            '/move' => self::moveResponse(),
+            '/end' => self::endResponse(),
+            default => self::notFound(),
+        };
+    }
+
+    public static function indexResponse() : void
+    {
+        self::outputJsonResponse([
+            'apiversion' => APIVERSION,
+            'author' => AUTHOR,
+            'color' => COLOR,
+            'head' => HEAD,
+            'tail' => TAIL,
+        ]);
     }
 
     /**
@@ -29,32 +40,43 @@ class Api
      *
      * @throws Exception
      */
-    public static function moveResponse(string $move) : void
+    public static function moveResponse() : void
     {
-        if (! in_array($move, ['up', 'down', 'left', 'right']))
-        {
-            throw new \Exception('Move must be one of [up, down, left, right]');
-        }
+        GameState::load( file_get_contents('php://input') );
 
-        // error_log("Moving " . $move);
-        self::outputJsonResponse(['move' => $move]);
+        self::outputJsonResponse(['move' => GameState::you()->getMove()]);
     }
 
     /**
      * Responses to requests to the /start endpoint are ignored by the Battlesnake engine, so this function outputs nothing.
+     *
+     * @return void
      */
     public static function startResponse() : void
     {
-        echo '';
+        GameState::load( file_get_contents('php://input') );
     }
 
 
     /**
      * Responses to requests to the /end endpoint are ignored by the Battlesnake engine, so this function outputs nothing.
+     *
+     * @return void
      */
     public static function endResponse() : void
     {
-        echo '';
+        GameState::load( file_get_contents('php://input') );
+    }
+
+
+    /**
+     * Outputs a 404 Not Found response.
+     *
+     * @return void
+     */
+    public static function notFound() : void
+    {
+        header($_SERVER['SERVER_PROTOCOL'].' 404 Not Found');
     }
 
 

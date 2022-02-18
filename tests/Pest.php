@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Define configuration constants for the test suite.
+ */
+require_once('testconfig.php');
+
 /*
 |--------------------------------------------------------------------------
 | Test Case
@@ -24,9 +29,9 @@
 |
 */
 
-expect()->extend('toBeOne', function () {
-    return $this->toBe(1);
-});
+// expect()->extend('toBeOne', function () {
+//     return $this->toBe(1);
+// });
 
 /*
 |--------------------------------------------------------------------------
