@@ -8,23 +8,26 @@ class GameState
 {
     private static object $state;
     private static array $board;
-    private static array $snakes;
+    private static string $youID;
+    private static Snake $you;
+    private static array $enemies;
     private static array $food;
     private static array $hazards;
-    private static string $youID;
 
     public static function load( string $state_json ) : void
     {
-        // error_log("Game state:");
-        // error_log($state_json . "\n", 3, "../storage/log/log");
         self::$state = json_decode($state_json);
-        self::$snakes = array_map(
-            function ($snake)
-            {
-                return new Snake($snake);
-            },
-            self::$state->board->snakes
-        );
+
+        self::$youID = self::$state->you->id;
+        self::$you = new Snake(self::$state->you);
+
+        self::$enemies = [];
+        foreach (self::$state->board->snakes as $snake) {
+            if ($snake->id !== self::$youID) {
+                self::$enemies[] = new Snake($snake);
+            }
+        }
+
         self::$food = array_map(
             function ($food)
             {
@@ -32,6 +35,7 @@ class GameState
             },
             self::$state->board->food
         );
+
         self::$hazards = array_map(
             function ($hazard)
             {
@@ -40,7 +44,6 @@ class GameState
             self::$state->board->hazards
         );
 
-        self::$youID = self::$state->you->id;
         self::hydrateBoard();
     }
 
@@ -51,7 +54,7 @@ class GameState
             for ($x = 0; $x < self::$state->board->width; $x++) {
                 self::$board[$y][$x] = 'empty';
                 // For each snake, check if it occupies this cell
-                foreach (self::$snakes as $snake) {
+                foreach (self::snakes() as $snake) {
                     if ($snake->occupies(new Vector($x, $y))) {
                         self::$board[$y][$x] = 'snake';
                     }
@@ -86,23 +89,19 @@ class GameState
 
     public static function snakes() : array
     {
-        return self::$state->board->snakes;
+        return array_merge([self::$you], self::$enemies);
     }
 
 
     public static function you() : Snake
     {
-        return array_filter(self::$snakes, function ($snake) {
-            return $snake->id() === self::$youID;
-        })[0];
+        return self::$you;
     }
 
 
     public static function enemies() : array
     {
-        return array_filter(self::$snakes, function ($snake) {
-            return $snake->id() !== self::$youID;
-        });
+        return self::$enemies;
     }
 
 

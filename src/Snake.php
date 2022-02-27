@@ -122,11 +122,13 @@ class Snake
 
     public function getMove() : string
     {
+        $move = '';
         if (GameState::hasFood()) {
-            return $this->moveTowardClosestFood();
+            $move = $this->moveTowardClosestFood();
         }
         else {
-            return $this->randomMove();
+            $move = $this->randomMove();
         }
+        return $move;
     }
 }

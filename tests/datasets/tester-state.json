@@ -1,0 +1,117 @@
+{
+    "board": {
+        "food": [
+            {
+                "x": 5,
+                "y": 5
+            }
+        ],
+        "snakes": [
+            {
+                "id": "mTOl1",
+                "name": "snake mTOl1",
+                "health": 80,
+                "body": [
+                    {
+                        "x": 4,
+                        "y": 5
+                    },
+                    {
+                        "x": 3,
+                        "y": 5
+                    },
+                    {
+                        "x": 2,
+                        "y": 5
+                    },
+                    {
+                        "x": 1,
+                        "y": 5
+                    }
+                ],
+                "latency": 0,
+                "head": {
+                    "x": 4,
+                    "y": 5
+                },
+                "length": 4,
+                "shout": "",
+                "squad": ""
+            },
+            {
+                "id": "uZejq",
+                "name": "snake uZejq",
+                "health": 80,
+                "body": [
+                    {
+                        "x": 5,
+                        "y": 4
+                    },
+                    {
+                        "x": 5,
+                        "y": 3
+                    },
+                    {
+                        "x": 5,
+                        "y": 2
+                    },
+                    {
+                        "x": 5,
+                        "y": 1
+                    }
+                ],
+                "latency": 0,
+                "head": {
+                    "x": 5,
+                    "y": 4
+                },
+                "length": 4,
+                "shout": "",
+                "squad": ""
+            }
+        ],
+        "width": 11,
+        "height": 11,
+        "hazards": []
+    },
+    "game": {
+        "id": "new game",
+        "ruleset": {
+            "name": "standard",
+            "version": "v.1.2.3"
+        },
+        "timeout": 500
+    },
+    "turn": 0,
+    "you": {
+        "id": "uZejq",
+        "name": "snake uZejq",
+        "health": 80,
+        "body": [
+            {
+                "x": 5,
+                "y": 4
+            },
+            {
+                "x": 5,
+                "y": 3
+            },
+            {
+                "x": 5,
+                "y": 2
+            },
+            {
+                "x": 5,
+                "y": 1
+            }
+        ],
+        "latency": 0,
+        "head": {
+            "x": 5,
+            "y": 4
+        },
+        "length": 4,
+        "shout": "",
+        "squad": ""
+    }
+}

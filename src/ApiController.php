@@ -12,7 +12,10 @@ class ApiController
 
     public static function handle($requestUri)
     {
-        header("Access-Control-Allow-Origin: *");
+        if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS')
+        {
+            return;
+        }
 
         match($requestUri)
         {
@@ -90,7 +93,6 @@ class ApiController
     public static function outputJsonResponse(array $responseData) : void
     {
         $body = (object) $responseData;
-        header('Content-Type: application/json');
         echo json_encode($body);
     }
 }
