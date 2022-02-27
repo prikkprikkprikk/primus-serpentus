@@ -12,6 +12,8 @@ class ApiController
 
     public static function handle($requestUri)
     {
+        header("Access-Control-Allow-Origin: *");
+
         match($requestUri)
         {
             '/' => self::indexResponse(),
