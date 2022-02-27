@@ -21,7 +21,7 @@ it('has correct board size', function ()
 it('has one snake', function ()
 {
     expect(GameState::snakes())->toBeArray();
-    expect(count(GameState::snakes()))->toBe(1);
+    expect(GameState::snakes())->toHaveCount(1);
 });
 
 

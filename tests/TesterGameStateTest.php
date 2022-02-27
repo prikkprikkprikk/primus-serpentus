@@ -1,4 +1,17 @@
 <?php
+/**
+ * The way the "you" snake was picked from the dataset
+ * did not account for the fact that array_filter keeps
+ * the keys. It turns out relying on the key being 0 is
+ * not a good idea.
+ *
+ * This test ensures that the "you" snake is always picked
+ * from the 'you' key in the dataset.
+ *
+ * After this refactor, the list of enemies is in its own
+ * array in the GameState object, and the "snakes" array
+ * is created by merging the "you" snake with the "enemies".
+ */
 
 use App\Snake;
 use App\Vector;
@@ -25,7 +38,7 @@ it('has correct board size', function ()
 it('has two snakes', function ()
 {
     expect(GameState::snakes())->toBeArray();
-    expect(count(GameState::snakes()))->toBe(2);
+    expect(GameState::snakes())->toHaveCount(2);
 });
 
 
@@ -46,7 +59,7 @@ it('has one food at 5, 5', function ()
 {
     $food = GameState::food()[0];
     expect(GameState::food())->toBeArray();
-    expect(GameState::food())->toHaveLength(1);
+    expect(GameState::food())->toHaveCount(1);
     expect($food)->toBeInstanceOf(Vector::class);
     expect($food->x)->toBe(5);
     expect($food->y)->toBe(5);

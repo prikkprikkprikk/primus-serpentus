@@ -22,7 +22,7 @@ it('has correct board size', function ()
 it('has five snakes', function ()
 {
     expect(GameState::snakes())->toBeArray();
-    expect(count(GameState::snakes()))->toBe(5);
+    expect(GameState::snakes())->toHaveCount(5);
 });
 
 
@@ -45,7 +45,7 @@ it('has empty cells where expected', function ()
 it('has four enemies', function ()
 {
     expect(GameState::enemies())->toBeArray();
-    expect(count(GameState::enemies()))->toBe(4);
+    expect(GameState::enemies())->toHaveCount(4);
 });
 
 
@@ -53,12 +53,12 @@ it('has no food', function ()
 {
     expect(GameState::food())->toBeArray();
     expect(GameState::hasFood())->toBe(false);
-    expect(count(GameState::food()))->toBe(0);
+    expect(GameState::food())->toHaveCount(0);
 });
 
 
 it('has no hazards', function ()
 {
     expect(GameState::hazards())->toBeArray();
-    expect(count(GameState::hazards()))->toBe(0);
+    expect(GameState::hazards())->toHaveCount(0);
 });

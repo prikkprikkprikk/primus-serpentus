@@ -40,7 +40,7 @@ test('possible moves are correct', function()
     $possibleMoves = GameState::you()->possibleMoves();
 
     expect($possibleMoves)->toBeArray();
-    expect(count($possibleMoves))->toBe(2);
+    expect($possibleMoves)->toHaveCount(2);
     expect(in_array('up', $possibleMoves))->toBe(true);
     expect(in_array('down', $possibleMoves))->toBe(true);
 });
